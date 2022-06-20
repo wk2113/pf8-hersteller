@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hersteller</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="css/reset.css" type="text/css">
+
+    <!-- 구글폰트:notosanskr -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet"> 
+
+    <link rel="stylesheet" href="css/common.css" type="text/css">
+    <link rel="stylesheet" href="css/header.css" type="text/css">
+    <link rel="stylesheet" href="css/title.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+    <link rel="stylesheet" href="css/aside.css" type="text/css">
+    <link rel="stylesheet" href="css/footer.css" type="text/css">
+    <link rel="stylesheet" href="css/popup.css" type="text/css">
+    <link rel="stylesheet" href="css/responsive.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        $(document).ready(
+            function(){
+                
+                //------a.allmenu 클릭시------//
+                $("header .wrap a.allmenu").click(function(){
+                    // x변환
+                    $(this).toggleClass("x");
+                    //대메뉴 등장
+                $("header .wrap ul.gnb").toggleClass("moveShow");
+                    // 메뉴클릭시 바디 안보이게 클래스 붙이기
+                $("body").toggleClass("bodyHide")
+                    return false;
+                });
+               
+                //------슬릭 이벤트--------//
+                //product slide      
+                $('.productSlide').slick({
+                    dots: true,
+                    infinite: true,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 3000,
+            
+
+                });
+                //bestSlide
+                $('.bestSlide').slick({
+                    dots: true,
+                    infinite: true,
+                    slidesToShow: 4,
+                    slidesToScroll: 4,
+                    autoplay: true,
+                    autoplaySpeed: 3000,
+                    responsive: [ 
+                                    {
+                                    breakpoint : 768,
+                                        settings: {
+                                            slidesToShow: 2,
+                                            slidesToScroll: 2
+                                        }
+                                    }
+                                ]
+
+                });
+                
+
+                //------스크롤 이벤트-------//
+                $(window).scroll(function(){
+                    //top버튼 나오게
+                    if($(window).scrollTop()>=$("#title").height()+$("#product").height()+$("#best").height()){ 
+                        $("a.top").fadeIn(500);
+                    }
+                    //top 버튼 들어가게
+                    if($(window).scrollTop()<$("#title").height()+$("#product").height()+$("#best").height()){ 
+                        $("a.top").fadeOut(500);
+                    }
+                    //카테고리 클래스 지정 (css애니메이션 작동)
+                    if($(window).scrollTop()>700){ 
+                        $("#product .wrap .list h2.category").addClass("currentA");
+                        $("#product .wrap .list h3.name").addClass("currentA");
+                        $("#product .wrap .list p.type").addClass("currentA");
+                        $("#product .wrap .list p.tags").addClass("currentA");
+                        $("#product .wrap .list p.contents").addClass("currentA");
+                    }
+                  
+                    //product 애니메이션 보이게 ( currentA add)
+                    if($(window).scrollTop()>700){ 
+                        $("#product .wrap .list h2.category").addClass("currentA");
+                        $("#product .wrap .list h3.name").addClass("currentA");
+                        $("#product .wrap .list p.type").addClass("currentA");
+                        $("#product .wrap .list p.tags").addClass("currentA");
+                        $("#product .wrap .list p.contents").addClass("currentA");
+                    }
+                    //product 애니메이션 안보이게 ( currentA remove)
+                    if($(window).scrollTop()<=0){ 
+                        $("#product .wrap .list h2.category").removeClass("currentA");
+                        $("#product .wrap .list h3.name").removeClass("currentA");
+                        $("#product .wrap .list p.type").removeClass("currentA");
+                        $("#product .wrap .list p.tags").removeClass("currentA");
+                        $("#product .wrap .list p.contents").removeClass("currentA");
+                    }
+                    //product 애니메이션 안보이게 ( currentA remove)
+                    if($(window).scrollTop()>=$("#product").height()+$("#best").height()){ 
+                        $("#product .wrap .list h2.category").removeClass("currentA");
+                        $("#product .wrap .list h3.name").removeClass("currentA");
+                        $("#product .wrap .list p.type").removeClass("currentA");
+                        $("#product .wrap .list p.tags").removeClass("currentA");
+                        $("#product .wrap .list p.contents").removeClass("currentA");
+                    }   
+                    //drops 애니메이션 보이게 ( currentB .add)
+                    if($(window).scrollTop()>=$("#title").height()+$("#product").height()+$("#best").height()-300){ 
+                        $("#drops .wrap h2.little").addClass("currentB");
+                        $("#drops p.text").addClass("currentB");
+                    } 
+                    //drops 애니메이션 안보이게 ( currentB .remove)
+                    if($(window).scrollTop()<=1000){ 
+                        $("#drops .wrap h2.little").removeClass("currentB");
+                        $("#drops p.text").removeClass("currentB");
+                    } 
+                    //event 애니메이션 보이게 ( currentC .add)
+                    if($(window).scrollTop()>=$("#title").height()+$("#product").height()+$("#best").height()+$("#eventimg").height()-300){ 
+                        $("#eventimg ul li.imglist").addClass("currentC");
+                    } 
+                      //event 애니메이션 안보이게 ( currentB .remove)
+                      if($(window).scrollTop()<=2700){ 
+                        $("#eventimg ul li.imglist").removeClass("currentC");
+                    } 
+                    
+                    
+                    
+
+                });
+
+
+                //위로가기 버튼
+                $("a.top").hide();
+                $("a.top").click(function(){
+                    $("html,body").animate({scrollTop:"0px"},700);
+                    return false;
+                });
+                
+               
+        });
+            
+    </script>
+    <style>
+        /* 메뉴 클릭시 밑 섹션들 안보이게 */
+        .bodyHide{
+            overflow: hidden;
+        }
+        /* productSlide 스타일링 */
+        .productSlide .slick-dots{
+            bottom: 80px;
+            left: 70px;
+            width: initial;
+        }
+        .productSlide .slick-dots::before{
+        content: "01";
+        content: "01";
+        font-size: 14px;
+        position: absolute;
+        left: -22px;
+        bottom: 12px;
+      }
+      .productSlide .slick-dots::after{
+        content: "04";
+        right: -34px;
+        position: absolute;
+        font-size: 14px;
+        bottom: 12px;
+      }
+        .productSlide .slick-dots li button{
+            width: 30px;
+        }
+        .productSlide .slick-dots li button::before{
+            height: 1.5px;
+            width: 30px;
+            content: "";
+            background-color: black;
+
+        }
+        .slick-dots li.slick-active button::before{
+            font-size: 9px;
+        }
+ 
+  
+        
+        /* ---- product slide ----
+        
+        .productSlide button.slick-arrow{
+            background-color: initial;
+            top: 79%;
+        }
+        .productSlide button.slick-arrow::before{
+        font-family: initial !important;
+        content: "" !important;
+        width: 10px;
+        height: 10px;
+        display: block;
+        border: 1px solid #333;
+        border-bottom:transparent;
+        border-left:transparent;   
+        }
+        .productSlide button.slick-arrow.slick-prev{
+            left: 47px;
+            z-index: 1;
+        }
+        .productSlide button.slick-arrow.slick-next{
+            left: 191px;
+        }
+        .productSlide .slick-prev::before{
+            transform: rotate(-135deg);
+        }
+        .productSlide .slick-next::before{
+            transform: rotate(45deg);
+        }
+        .productSlide .slick-list{ 
+            height: 1000px;
+        }
+        .productSlide .slick-dots  button::before{
+            transition: all 0.2s;
+       
+        }
+        .productSlide .slick-dots .slick-active button::before{
+          font-size: 10px;
+        
+        }
+        .productSlide .slick-intialized .slick-slide{
+          padding: 0 13px;
+          box-sizing: border-box;
+        }
+        .productSlide .slick-dots{
+            bottom: 200px;
+            left: 69px;
+            width: initial;
+        }
+       
+       */
+
+    </style>
+
+</head>
+<body>
+   <!-- 상단영역 -->
+   <header id="header">
+    <div class="wrap" >
+        <h1 class="h1">
+            <a href="index.html">hersteller</a>
+        </h1>
+        <a href="" class="search"><span>검색</span></a>
+        <ul class="gnb"> 
+            <li>
+                <h2><a href="">Brand</a></h2>
+            </li>     
+            <li>
+                <h2><a href="">Product</a></h2>
+                <ul class="sub">
+                    <li><a href="">Little drops</a></li>
+                    <li><a href="">Wonder Veggie</a></li>
+                    <li><a href="">Nearby</a></li>
+                </ul>
+            </li>
+            <li>
+                <h2><a href="">Event</a></h2>
+            </li>
+            <li>
+                <h2><a href="">Service</a></h2>
+                <ul class="sub">
+                    <li><a href="">Shop</a></li>
+                    <li><a href="">Notice</a></li>
+                    <li><a href="">FAQ</a></li>
+                </ul>
+        </ul>
+        <a href="" class="allmenu">전체메뉴보기<span></span></a>
+    </div>    
+</header>
+    <!-- 타이틀영역 -->
+    <div id="title">
+            <section class="title-cover">
+                <video src= "http://www.herstellerbeauty.com/assets/img/main/cover.mp4"autoplay muted loop type="video/mp4"></video>
+         </section>
+        </div>
+    </div>
+    <!-- 내용영역 -->
+    <main>
+        <!-- best product -->
+        <section id="product">
+            <div class="wrap">     
+                <ul  class="productSlide">
+                    <li class="">
+                        <a href="">
+                            <span><img src="img/product1.jpg" alt=""></span>
+                            <div class="list">
+                                <h2 class="category">Best Product</h2>
+                                <h3 class="name">CALMING<br>DAYS<br>AMPOULE</h3>
+                                <p class="type">진정</p>
+                                <p class="tags">#카렌둘라진정앰플 #속당김없는황금비율</p>
+                                <p class="contents">민감 피부를 위한 황금 비율의 진정 한 방울</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span><img src="img/product2.jpg" alt=""></span>
+                            <div class="list">
+                                <h2 class="category">New Product</h2>
+                                <h3 class="name">CALMING<br>MASK</h3>
+                                <p class="type">붉은기진정</p>
+                                <p class="tags">#급속진정 #붉은기진정마스크</p>
+                                <p class="contents">민감 피부를 위한 황금 비율의 진정 한 방울</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span><img src="img/product3.jpg" alt=""></span>
+                            <div class="list">
+                                <h2 class="category">Best Product</h2>
+                                <h3 class="name">JUICY<br>TREATMENT<br>ESSENCE</h3>
+                                <p class="type">항산화</p>
+                                <p class="tags">#첫단계 #히어로무자극에센스</p>
+                                <p class="contents">산화/피부 결 개선/투명도 개선/수분 진정 등<br>피부 고민을 해결해주는 7in1 트리트먼트 에센스</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span><img src="img/product4.jpg" alt=""></span>
+                            <div class="list">
+                                <h2 class="category">New Product</h2>
+                                <h3 class="name">NEARBY<br>BODY<br>CARE</h3>
+                                <p class="type">바디</p>
+                                <p class="tags">#비건바디케어 #자연에서찾은향</p>
+                                <p class="contents">다이브 인 피그 I 스틸 어 로즈 I 데저트 우드</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>        
+        <!-- 허스텔러 s/s best -->
+        <section id="best">
+            <div class="wrap">
+                <div class="text">
+                    <h2>BEST PRODUCT</h2>
+                    <p>허스텔러 S/S 베스트<br><br></p>
+					<a href="" class="more">VIEW MORE</a>
+                </div>
+                <div class="list">
+                    <ul class="bestSlide">
+                        <li>
+                            <a href="">
+                                <span><img src="img/best1_1.png" alt=""></span>
+                                <span class="hoverimg"><img src="img/best1_2.png" alt=""></span>
+                                <p class="type">급속 진정</p>
+                                <p class="tags">Calming Days Ampoule</p>
+                                <p class="contents">민감 피부를 위한<br>황금 비율의 진정 한 방울</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span><img src="img/best2_1.png" alt=""></span>
+                                <span class="hoverimg"><img src="img/best2_2.png" alt=""></span>
+                                <p class="type">붉은기 진정</p>
+                                <p class="tags">Calming Mask</p>
+                                <p class="contents">끈적임 없는 착붙 시트<br><br></p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span><img src="img/best3_1.png" alt=""></span>
+                                <span class="hoverimg"><img src="img/best3_2.png" alt=""></span>
+                                <p class="type">항산화</p>
+                                <p class="tags">Juicy Treatment Essence</p>
+                                <p class="contents">첫 단계 향산화<br>비건 트리트먼트 에센스</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span><img src="img/best4_1.png" alt=""></span>
+                                <span class="hoverimg"><img src="img/best4_2.png" alt=""></span>
+                                <p class="type">바디</p>
+                                <p class="tags">NEARBY BODY CARE</p>
+                                <p class="contents">자연에서 찾은<br>센티드 비건 바디 케어</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span><img src="img/best5_1.png" alt=""></span>
+                                <span class="hoverimg"><img src="img/best5_2.png" alt=""></span>
+                                <p class="type">결탄력</p>
+                                <p class="tags">Rebirth Day Ampoulee</p>
+                                <p class="contents">피부 결·탄력<br> 레드 에너지 한 방울</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span><img src="img/best6_1.png" alt=""></span>
+                                <span class="hoverimg"><img src="img/best6_2.png" alt=""></span>
+                                <p class="type">클렌징</p>
+                                <p class="tags">Cleansing Foam</p>
+                                <p class="contents">약산성 비건 폼<br> 촉촉한 클린업</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span><img src="img/best7_1.png" alt=""></span>
+                                <span class="hoverimg"><img src="img/best7_2.png" alt=""></span>
+                                <p class="type">립케어</p>
+                                <p class="tags">Calming Days Ampoule</p>
+                                <p class="contents">입술 위에 닿는 <br> 비건 보습 생기 립밤</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span><img src="img/best8_1.png" alt=""></span>
+                                <span class="hoverimg"><img src="img/best8_2.png" alt=""></span>
+                                <p class="type">고보습</p>
+                                <p class="tags">Calming Days Ampoule</p>
+                                <p class="contents">피부 겉과 속을 <br> 채워주는 밀도 높은 보습감</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>                 
+            </div>
+        </section>
+        <!-- drops -->
+        <section id="drops">
+            <div class="wrap">
+                <h2 class="little">LITTLE DROPS</h2>
+                <p class="text">내 피부를 위한 비건 레시피<br>매일의 나를 위한 순수한 한방울 피부 고민 맞춤 앰플, 리틀 드롭스</p>  
+            </div>
+        </section>
+
+        <!-- event -->
+        <section id="eventimg">
+            <h2>Event</h2>
+            <div class="wrap">
+               <ul>
+                   <li class="imglist">
+                       <a href="">
+                           <img src="img/event_1.jpg" alt="">
+                        </a>
+                    </li>
+                    <li class="imglist">
+                        <a href="">
+                            <img src="img/event_2.jpg" alt="">
+                         </a>
+                     </li>
+                     <li class="imglist">
+                        <a href="">
+                            <img src="img/event_3.jpg" alt="">
+                         </a>
+                     </li>
+                     <li class="imglist">
+                        <a href="">
+                            <img src="img/event_4.jpg" alt="">
+                         </a>
+                     </li>     
+               </ul>
+            </div>
+        </section>
+    </main>
+    <!-- 하단영역 -->
+    <footer class="footer">
+        <div class="wrap">
+                <h2>hersteller</h2>
+                <p><a href="">LOGIN</a></p>
+            <div class="gnb">
+                <ul>
+                    <li><a href="">Facebook</a></li>
+                    <li><a href="">Instagram</a></li>
+                    <li><a href="">Youtube</a></li>
+                </ul>
+            </div>
+            <div class="address">
+                <p>(주)더블유컨셉코리아<span>이은철</span><br>
+                    서울특별시 강남구 테헤란로 14길 16, 5층 (역삼동 라인빌딩)<span><strong>1833-2087</strong></span></p>
+                <p class="copyright">COPYRIGHT &copy; ALL RIGHT RESERVED</p>
+                <a href="" class="top">위로 가기</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
